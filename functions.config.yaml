@@ -1,0 +1,35 @@
+layers:
+  pylibs:
+    source: ./libs
+    compatibleRuntimes:
+      - python3.6
+    name: !Sub '${IamVariable}'
+
+globals:
+  runtime: python3.6
+  vpc: false
+  memory: 128
+  role: default
+
+functions:
+  getPerson:
+    # example of source file being single file
+    source: src/get_person.py
+    handler: get_person.handler
+    apiPath: /persons/{id}
+    apiMethod: GET
+
+  putPerson:
+    # example of source being whole directory
+    source: src/put_person
+    handler: put_person.handler
+    apiPath: /persons/{id}
+    apiMethod: PUT
+
+  postPerson:
+    # example of source being zip file, which will be copied as is,
+    # with cfhighlander manifesto file added to it
+    source: src/post_person.zip
+    handler: post_person.handler
+    apiPath: /persons/{id}
+    apiMethod: POST
