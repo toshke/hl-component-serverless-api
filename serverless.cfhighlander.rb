@@ -1,6 +1,6 @@
 CfhighlanderTemplate do
 
-    ComponentName 'serverless'
+    Name 'serverless-api'
 
     Parameters do
         if defined? vpc and vpc
